@@ -31,8 +31,11 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-
-                if (dbHelper.registerUser(username, password)) {
+                if(username.length() < 6 || password.length() < 8){
+                    etUsername.setError("Минумум 6 символов");
+                    etPassword.setError("Минумум 8 символов");
+                }
+              else   if (dbHelper.registerUser(username, password)) {
                     Toast.makeText(RegisterActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
                     finish();
 
